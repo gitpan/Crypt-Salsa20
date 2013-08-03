@@ -1,4 +1,4 @@
-Crypt-Salsa20 version 0.01, released July 20, 2013
+Crypt-Salsa20 version 0.02, released August 3, 2013
 
 
 This module implements the Salsa20 encryption algorithm.
@@ -26,10 +26,13 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 0.01 of Crypt-Salsa20:
+    Here's what's new in version 0.02 of Crypt-Salsa20:
     (See the file "Changes" for the full revision history.)
 
-	- Initial release
+	- Improved performance on 32-bit Perl (about 20% faster)
+	- Change 00-load.t to indicate 32-bit or 64-bit implementation
+	- Add 40-bigtest.t
+	  (translation of bigtest.c from Salsa20 reference implementation)
 
 
 

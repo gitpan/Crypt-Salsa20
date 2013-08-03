@@ -23,11 +23,12 @@ my %WriteMakefileArgs = (
     "Carp" => 0
   },
   "TEST_REQUIRES" => {
+    "Digest::MD5" => 0,
     "Exporter" => 0,
     "FindBin" => 0,
     "Test::More" => "0.88"
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.02",
   "test" => {
     "TESTS" => "t/*.t"
   }

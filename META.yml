@@ -3,6 +3,7 @@ abstract: 'Encrypt data with the Salsa20 cipher'
 author:
   - 'Christopher J. Madsen <perl@cjmweb.net>'
 build_requires:
+  Digest::MD5: 0
   Exporter: 0
   FindBin: 0
   Test::More: 0.88
@@ -20,7 +21,7 @@ requires:
   perl: 5.008
 resources:
   repository: git://github.com/madsen/crypt-salsa20.git
-version: 0.01
+version: 0.02
 x_Dist_Zilla:
   perl:
     version: 5.014002
@@ -135,6 +136,10 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::ArchiveRelease
       name: CJM/ArchiveRelease
       version: 4.00
+    -
+      class: Dist::Zilla::Plugin::ConfirmRelease
+      name: ConfirmRelease
+      version: 4.300034
     -
       class: Dist::Zilla::Plugin::AutoPrereqs
       name: AutoPrereqs
