@@ -23,8 +23,8 @@ use warnings;
 
 use Carp ();
 
-our $VERSION = '0.02';
-# This file is part of Crypt-Salsa20 0.02 (August 3, 2013)
+our $VERSION = '0.03';
+# This file is part of Crypt-Salsa20 0.03 (January 25, 2014)
 
 #=====================================================================
 sub IS32BIT () { use integer; (0x7fffffff + 1) == -2147483648 }
@@ -390,20 +390,25 @@ Crypt::Salsa20 - Encrypt data with the Salsa20 cipher
 
 =head1 VERSION
 
-This document describes version 0.02 of
-Crypt::Salsa20, released August 3, 2013.
+This document describes version 0.03 of
+Crypt::Salsa20, released January 25, 2014.
 
 =head1 SYNOPSIS
 
   use Crypt::Salsa20;
 
   my $salsa20 = Crypt::Salsa20->new(-key => $key, -iv => $nonce);
+
+  # Use cryptor for the best performance:
   my $cryptor = $salsa20->cryptor;
-  my $ciphertext = $cryptor->($plaintext);
+  my $ciphertext = $cryptor->('plaintext');
+  # encryption & decryption are the same operation:
+  $salsa20->start;   # reset the block counter (keeping key & iv)
+  my $plaintext  = $cryptor->($ciphertext);
 
   # Or use Crypt::CBC-like API:
   my $ciphertext = $salsa20->encrypt('plaintext');
-  my $plaintext  = $salsa20->decrypt($plaintext);
+  my $plaintext  = $salsa20->decrypt($ciphertext);
 
 =head1 DESCRIPTION
 
@@ -573,7 +578,7 @@ Equivalent to calling C<start> and then C<crypt> (the same as C<encrypt>).
 =head2 cryptor
 
   $cryptor = $salsa20->cryptor;
-  $ciphertext = $cryptor->($plaintext);
+  $ciphertext = $cryptor->($plaintext); # or if decrypting,
   $plaintext  = $cryptor->($ciphertext);
 
 This method is the most efficient way to use Crypt::Salsa20 if you are
@@ -607,11 +612,11 @@ or through the web interface at
 L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Crypt-Salsa20 >>.
 
 You can follow or contribute to Crypt-Salsa20's development at
-L<< http://github.com/madsen/crypt-salsa20 >>.
+L<< https://github.com/madsen/crypt-salsa20 >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Christopher J. Madsen.
+This software is copyright (c) 2014 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
